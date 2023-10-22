@@ -1,0 +1,10 @@
+.leaflet-container{
+    height: 600px;
+    width: 100%;
+    /* justify-content: center; */
+}
+.map{
+    background-color: aqua;
+    height: 100%;
+    width: 100%;
+}

@@ -3,7 +3,8 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cookieParser=require("cookie-parser");
 const cors= require("cors");
-
+const AuthRoute=require('./routes/auth');
+const indexRoute=require('./routes/index');
 
 
 
@@ -46,7 +47,8 @@ app.use((err, req, res, next) => {
   });
 
 
-
+  app.use('/index',indexRoute); 
+  app.use('/auth', AuthRoute);
 
 app.get("/",(req,res)=>{
     res.send("Hello there")

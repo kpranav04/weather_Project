@@ -1,10 +1,6 @@
-.leaflet-container{
-    height: 600px;
-    width: 100%;
-    /* justify-content: center; */
+body {
+  background-color: rgb(178, 210, 222);
 }
-.map{
-    background-color: aqua;
-    height: 100%;
-    width: 100%;
+.leaflet-container {
+  background-color: rgb(178, 210, 222);
 }

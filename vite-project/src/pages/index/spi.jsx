@@ -1,20 +1,24 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 function SPI(){
 
     const [data, setData] = useState({
         location:undefined,
-        value:undefined,
+        valuee:undefined,
         spi_index:undefined,
-        date:undefined
+        
       });
+      const [datee,setDate]=useState(new Date());
+
       
         const handleChange = (e) => {
           setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
         };
         const handleSubmit = async (e) => {
             e.preventDefault();
-            const res=await axios.post('http://localhost:3000/index/postSPI');
+            const res=await axios.post('http://localhost:3000/index/spi_post',{location:data.location,date:datee,index:data.spi_index,value:data.valuee});
             console.log(res);
           };
 
@@ -41,11 +45,11 @@ function SPI(){
                className='entry'
                type="number"
                required
-               onChange={handleChange} placeholder='value' id='value'
+               onChange={handleChange} placeholder='valuee' id='valuee'
          />
         
   <h2>DATE</h2>
-         <DatePicker  onChange={(date) => setStartDate(date)} />
+         <DatePicker  onChange={(date) => setDate(date)} />
          <button onClick={handleSubmit}></button>
 
 

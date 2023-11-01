@@ -8,8 +8,8 @@ const SPI_IndexSchema = mongoose.Schema({
        date:Date,
        index:Number,
        value:Number
-      }],
-
-
-    
+      }],  
 });
+
+
+module.exports=mongoose.model('Spi', SPI_IndexSchema );

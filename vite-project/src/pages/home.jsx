@@ -1,13 +1,16 @@
 import './home.css';
 import Navbar from '../components/navbar/navbar';
-import Map from '../components/map/map'
+import MyMap from '../components/map/map'
 function Home(){
 
 
 
     return(
         
-        <Map/>
+        <div >
+        <h1>React Leaflet Map</h1>
+        <MyMap />
+      </div>
         
     );
 

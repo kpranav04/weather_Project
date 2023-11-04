@@ -1,87 +1,38 @@
 import "./mapcss.css";
 import "leaflet/dist/leaflet.css";
 import React, { Component } from "react";
-import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import mapData from "./India_Country_Boundary";
-import statee from "./India_State_Boundary"
+import { MapContainer,TileLayer,Polygon } from "react-leaflet";
+import mapData from "./india_st.json";
 
 
-// import "./MyMap.css";
-
-// class MyMap extends Component {
-//   state = { color: "#ffff00" };
-
-//   colors = ["green", "blue", "yellow", "orange", "grey"];
-
-//   componentDidMount() {
-//     console.log(mapData);
-//   }
-
-//   countryStyle = {
-//     fillColor: "red",
-//     fillOpacity: 1,
-//     color: "black",
-//     weight: 2,
-//   };
-
-//   printMesssageToConsole = (event) => {
-//     console.log("Clicked");
-//   };
-
-//   changeCountryColor = (event) => {
-//     event.target.setStyle({
-//       color: "green",
-//       fillColor: this.state.color,
-//       fillOpacity: 1,
-//     });
-//   };
-
-//   onEachCountry = (country, layer) => {
-//     const countryName = country.properties.ADMIN;
-//     console.log(countryName);
-//     layer.bindPopup(countryName);
-
-//     layer.options.fillOpacity = Math.random(); //0-1 (0.1, 0.2, 0.3)
-//     // const colorIndex = Math.floor(Math.random() * this.colors.length);
-//     // layer.options.fillColor = this.colors[colorIndex]; //0
-
-//     layer.on({
-//       click: this.changeCountryColor,
-//     });
-//   };
-
-//   colorChange = (event) => {
-//     this.setState({ color: event.target.value });
-//   };
-
-//   render() {
   function MyMap(){
     return (
       <div>
         <h1 style={{ textAlign: "center" }}>My Map</h1>
-        <MapContainer style={{ height: "80vh" }} zoom={9} center={[20, 100]}>
+        <MapContainer style={{ height: "80vh" }} zoom={9} center={[22.5390, 75.9114]}>
         <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=1UvW0tGrts7pl8q8PmRX"
+        attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
       />
-        <GeoJSON
-  data={mapData}
-  style={(feature) => ({
-    color: 'blue',
-    fillColor: 'yellow',
-    weight: 2,
-  })}
-  onEachFeature={(feature, layer) => {
-    layer.bindPopup(feature.properties.name);
-  }}
-/>
+
+        {
+        mapData.features.map((state) => {
+          const coordinates = state.geometry.coordinates[0].map((item) => [item[1], item[0]]);
+          console.log(coordinates);
+
+          return (
+          <Polygon
+            pathOptions={{
+              fillColor: '#696462',
+              fillOpacity: 0.8,
+              weight: 1,
+              color: 'black'
+            }}
+            positions={coordinates}
+          />)
+        })
+      }
         </MapContainer>
-        {/* <input
-          type="color"
-          value={this.state.color}
-          onChange={this.colorChange}
-        /> */}
       </div>
     );
   };

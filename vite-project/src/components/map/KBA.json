@@ -3,25 +3,29 @@
    "id": 1,
    "KBA": "Achanakmar Wildlife Sanctuary and Maniyari Reservoir",
    "Latitude": 22.48,
-   "Longitude": 81.8
+   "Longitude": 81.8,
+   "index":1.8
  },
  {
    "id": 2,
    "KBA": "Achankovil Forest Division",
    "Latitude": 9.15,
-   "Longitude": 77.16
+   "Longitude": 77.16,
+   "index":-1.5
  },
  {
    "id": 3,
    "KBA": "Adichunchunagiri Wildlife Sanctuary",
    "Latitude": 13.02,
-   "Longitude": 76.74
+   "Longitude": 76.74,
+   "index":-2.4
  },
  {
    "id": 4,
    "KBA": "Agumbe Reserve Forest",
    "Latitude": 13.56,
-   "Longitude": 75.07
+   "Longitude": 75.07,
+   "index":1.6
  },
  {
    "id": 5,

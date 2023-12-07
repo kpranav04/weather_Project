@@ -5,6 +5,9 @@ import axios from "axios";
 import MyMap from "../../components/map/map";
 import Navbar from "../../components/navbar/navbar";
 import './spi.css';
+// import DatePicker from "react-datepicker";
+
+// import "react-datepicker/dist/react-datepicker.css";
 
 function SPI() {
 
@@ -16,6 +19,13 @@ function SPI() {
   });
   const [datee, setDate] = useState(new Date());
 
+  const [index,setIndex]=useState([]);
+
+  const [cred,setCred]=useState({
+    month:undefined,
+    year:undefined
+  })
+
 
   const handleChange = (e) => {
     setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -23,6 +33,18 @@ function SPI() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.post('http://localhost:3000/index/spi_post', { location: data.location, date: datee, index: data.spi_index, value: data.valuee });
+    console.log(res);
+  };
+
+  const handlegetChange = (e) => {
+    setCred((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+  const handlegetSubmit = async (e) => {
+    e.preventDefault();
+    console.log(cred.year);
+    console.log(cred.month);
+
+    const res = await axios.post('http://localhost:3000/index/spi_get', { month:cred.month,year:cred.year });
     console.log(res);
   };
 
@@ -36,41 +58,7 @@ function SPI() {
         <MyMap />
       </div>
       <div className="filters_spi">
-      <h2>Year</h2>
-          <select
-            className="entry"
-            required
-            onChange={handleChange}
-            id="year"
-          >
-            <option value="">Select a year</option>
-            {Array.from({ length: 81 }, (_, i) => (
-              <option key={i} value={i + 1950}>
-                {i + 1950}
-              </option>
-            ))}
-          </select>
-       <h2>Month</h2>
-      <select
-        className="entry"
-        required
-        onChange={handleChange}
-        id="month"
-      >
-        <option value="">Select a month</option>
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
-      </select>
+      
         <h3>City</h3>
         <input
           className='entry'
@@ -94,10 +82,51 @@ function SPI() {
         />
 
         <h3>Date</h3>
-        <DatePicker onChange={(date) => setDate(date)} />
-        <button onClick={handleSubmit}></button>
+        <DatePicker selected={datee} onChange={(datee) => setDate(datee)} />
+        <button onClick={handleSubmit}>POSTDATA</button>
 
+   
+
+     <h1>GET DATA BOx</h1>
+      <h2>Year</h2>
+          <select
+            className="entry"
+            required
+            onChange={handlegetChange}
+            id="year"
+          >
+            <option value="">Select a year</option>
+            {Array.from({ length: 81 }, (_, i) => (
+              <option key={i} value={i + 1950}>
+                {i + 1950}
+              </option>
+            ))}
+          </select>
+       <h2>Month</h2>
+      <select
+        className="entry"
+        required
+        onChange={handlegetChange}
+        id="month"
+      >
+        <option value="">Select a month</option>
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+
+      <button onClick={handlegetSubmit}>GETDATA</button>
       </div>
+      
 
 
 

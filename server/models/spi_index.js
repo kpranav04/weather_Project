@@ -8,7 +8,9 @@ const SPI_IndexSchema = mongoose.Schema({
         // ref:'Ticket'
         location:String,
         index:Number,
-        value:Number
+        value:Number,
+        latitude:String,
+        longitude:String
     }],
     date: {
        type:String,

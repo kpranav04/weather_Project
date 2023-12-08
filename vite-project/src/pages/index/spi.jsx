@@ -83,11 +83,11 @@ function SPI() {
 
         <h3>Date</h3>
         <DatePicker selected={datee} onChange={(datee) => setDate(datee)} />
-        <button onClick={handleSubmit}>POSTDATA</button>
+        <button onClick={handleSubmit}>Postdata</button>
 
    
 
-     <h1>GET DATA BOx</h1>
+     <h3>Get Data Box</h3>
       <h2>Year</h2>
           <select
             className="entry"
@@ -124,7 +124,7 @@ function SPI() {
         <option value="12">December</option>
       </select>
 
-      <button onClick={handlegetSubmit}>GETDATA</button>
+      <button onClick={handlegetSubmit}>Getdata</button>
       </div>
       
 

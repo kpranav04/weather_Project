@@ -1,4 +1,10 @@
 const Spi = require('../models/spi_index');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
+const filePath = path.join(__dirname, 'KBA.json');
+
+
 
 function convertMonthToNumber(monthText) {
     const months = {
@@ -16,9 +22,10 @@ function convertMonthToNumber(monthText) {
       December: 12
     };
   
-    return months[monthText];
+    return months[monthText];  
   }
   
+const citiesData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
 
 
@@ -34,11 +41,16 @@ module.exports.postSPI = async (req, res, next) => {
 
         console.log(dat);
         const date = await Spi.findOne({ date: dat });
+        const cityInfo = citiesData.find(city => city.KBA === req.body.location);
+        console.log(cityInfo);
         const data = {
             location: req.body.location,
             index: req.body.index,
-            value: req.body.value
+            value: req.body.value,
+            latitude: cityInfo.Latitude,
+            longitude:cityInfo.Longitude
         }
+        console.log(data);
         if (date) {
             await Spi.findOneAndUpdate(date, {
                 $push: { data: data },
@@ -47,7 +59,7 @@ module.exports.postSPI = async (req, res, next) => {
             res.status(200).json(data);
         }
         else {
-
+            
 
 
             const newloc = new Spi({ date: dat ,data:data});

@@ -5,7 +5,7 @@ const cookieParser=require("cookie-parser");
 const cors= require("cors");
 const AuthRoute=require('./routes/auth');
 const indexRoute=require('./routes/index');
-
+const bodyParser = require('body-parser');
 
 
 
@@ -16,6 +16,8 @@ const indexRoute=require('./routes/index');
 
 dotenv.config();
 const app = express();
+app.use(bodyParser.json());
+
 const connect = async () => {
     try {
         await mongoose.connect(process.env.MONGO)

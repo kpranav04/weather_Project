@@ -25,7 +25,7 @@ function SPI() {
     month:undefined,
     year:undefined
   })
-
+  const [mapData,setMapData]=useState(null);
 
   const handleChange = (e) => {
     setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -44,8 +44,9 @@ function SPI() {
     console.log(cred.year);
     console.log(cred.month);
 
-    const res = await axios.post('http://localhost:3000/index/spi_get', { month:cred.month,year:cred.year });
-    console.log(res);
+    const response = await axios.post('http://localhost:3000/index/spi_get', { month:cred.month,year:cred.year });
+    console.log(response.data);
+    setMapData(response.data);
   };
 
 
@@ -55,7 +56,7 @@ function SPI() {
       <Navbar />
       <div className="container">
       <div className="spi_map">
-        <MyMap />
+        <MyMap dataArray={mapData} />
       </div>
       <div className="filters_spi">
       

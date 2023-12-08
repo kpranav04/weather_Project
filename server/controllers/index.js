@@ -51,14 +51,14 @@ module.exports.postSPI = async (req, res, next) => {
             longitude:cityInfo.Longitude
         }
         console.log(data);
-        if (date) {
-            await Spi.findOneAndUpdate(date, {
-                $push: { data: data },
-            });
-            console.log(data);
-            res.status(200).json(data);
-        }
-        else {
+        // if (date) {
+        //     await Spi.findOneAndUpdate(date, {
+        //         $push: { data: data },
+        //     });
+        //     console.log(data);
+        //     res.status(200).json(data);
+        // }
+        // else {
             
 
 
@@ -70,7 +70,7 @@ module.exports.postSPI = async (req, res, next) => {
             console.log(data);
             res.status(200).json(data);
 
-        }
+        // }
 
     }
 
@@ -82,11 +82,6 @@ module.exports.postSPI = async (req, res, next) => {
 
 module.exports.getSPIdata = async(req,res,next)=>{
    
-    
- 
-  
-
-
     const { year, month } = req.body;
     // console.log(year,month);
     // const date = new Date(`${month} 1, 2000`); // Using 2000 as an arbitrary year

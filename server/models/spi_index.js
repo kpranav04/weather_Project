@@ -2,7 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const SPI_IndexSchema = mongoose.Schema({
-    data:[{
+    data:{
         // type:String,
         // type:mongoose.Schema.Types.ObjectId,
         // ref:'Ticket'
@@ -11,7 +11,7 @@ const SPI_IndexSchema = mongoose.Schema({
         value:Number,
         latitude:String,
         longitude:String
-    }],
+    },
     date: {
        type:String,
       }  

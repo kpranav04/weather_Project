@@ -6,7 +6,10 @@ import mapData from "./india_st.json";
 import dataPoints from "./KBA.json"
 
 
-function MyMap() {
+function MyMap({dataArray}) {
+  console.log(dataArray);
+  
+   
   const [markers, setMarkers] = useState([])
   const handleCircleClick = (circle) => {
     const newMarker = {
@@ -51,7 +54,7 @@ function MyMap() {
         {
           mapData.features.map((state) => {
             const coordinates = state.geometry.coordinates[0].map((item) => [item[1], item[0]]);
-            console.log(coordinates);
+            // console.log(coordinates);
 
             return (
               <Polygon
@@ -67,12 +70,13 @@ function MyMap() {
           })
         }
         {
-          dataPoints.map((point) => (
+          dataArray &&
+          dataArray.map((point) => (
             <Circle
               key={point.id}
-              center={[point.Latitude, point.Longitude]}
+              center={[point.data.latitude, point.data.longitude]}
               pathOptions={{
-                fillColor: getColor(point.index),
+                fillColor: getColor(point.data.index),
                 fillOpacity: 1,
                 color: "none"
 
@@ -88,9 +92,9 @@ function MyMap() {
           ))
         }
 
-        {dataPoints.map((marker) => (
-          <Marker key={marker.id} position={[marker.Latitude, marker.Longitude]} opacity={0} >
-            <Popup>{marker.KBA}</Popup>
+        { dataArray && dataArray.map((marker) => (
+          <Marker key={marker.id} position={[marker.data.latitude, marker.data.longitude]} opacity={0} >
+            <Popup>{marker.data.location}</Popup>
           </Marker>
         ))}
       </MapContainer>

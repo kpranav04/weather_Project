@@ -35,8 +35,9 @@ function MyMap() {
     if (index >= 3.0) return 'blue';
     // return 'red';
   };
-
-
+     
+   
+    
 
   return (
     <div>

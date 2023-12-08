@@ -1,15 +1,19 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const SPI_IndexSchema = mongoose.Schema({
-    location:{
-        type:String
-    },
-    data: [{
-       date:Date,
-       index:Number,
-       value:Number
-      }],  
+    data:[{
+        // type:String,
+        // type:mongoose.Schema.Types.ObjectId,
+        // ref:'Ticket'
+        location:String,
+        index:Number,
+        value:Number,
+        latitude:String,
+        longitude:String
+    }],
+    date: {
+       type:String,
+      }  
 });
-
-
 module.exports=mongoose.model('Spi', SPI_IndexSchema );

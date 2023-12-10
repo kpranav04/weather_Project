@@ -35,7 +35,7 @@ export const MenuData= [
     },
     {
       
-      url: "#",
+      url: "/sri",
       title: "SRI",
       
       cName: "nav-links",
@@ -43,7 +43,7 @@ export const MenuData= [
     },
     {
       
-      url: "#",
+      url: "/ssi",
       title: "SSI",
       
       cName: "nav-links",

@@ -1,16 +1,19 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const SSI_IndexSchema = mongoose.Schema({
-    location:{
-        type:String
+    data:{
+        // type:String,
+        // type:mongoose.Schema.Types.ObjectId,
+        // ref:'Ticket'
+        location:String,
+        index:Number,
+        value:Number,
+        latitude:String,
+        longitude:String
     },
-    data: [{
-       date:Date,
-       index:Number,
-       value:Number
-      }],
-
-
-
-    
+    date: {
+       type:String,
+      }  
 });
+module.exports=mongoose.model('Ssi', SSI_IndexSchema );

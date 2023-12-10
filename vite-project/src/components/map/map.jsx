@@ -77,7 +77,7 @@ function MyMap({dataArray}) {
               center={[point.data.latitude, point.data.longitude]}
               pathOptions={{
                 fillColor: getColor(point.data.index),
-                fillOpacity: 1,
+                fillOpacity: 2,
                 color: "none"
 
               }}

@@ -34,7 +34,7 @@ const citiesData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 module.exports.postSPI = async (req, res, next) => {
     try {
         // const locationreq.body.location;
-       
+       console.log(req.body.location);
         const dat = req.body.date.split('T')[0];
         // const dat = req.body.date.split('T')[0];
         // const dat = req.body.date;
@@ -184,7 +184,7 @@ module.exports.postSRI = async (req, res, next) => {
   }
 }
 
-module.exports.getSPIdata = async(req,res,next)=>{
+module.exports.getSPIdataMONTH = async(req,res,next)=>{
    
     const { year, month } = req.body;
     // console.log(year,month);
@@ -219,6 +219,42 @@ module.exports.getSPIdata = async(req,res,next)=>{
 }
 
     }
+
+    module.exports.getSPIdata = async(req,res,next)=>{
+     
+      const dates = req.body.dateget;
+      const date = dates.split('T')[0];
+      console.log(date);
+      // console.log(year,month);
+      // const date = new Date(`${month} 1, 2000`); // Using 2000 as an arbitrary year
+  
+    // Get the numerical value of the month (0 for January, 1 for February, etc.)
+      //   const monthNumber = date.getMonth() + 1;
+  //    const ye=parseInt(year)+1;
+  //    console.log(ye)
+    // Example usage:
+  //   const monthText = 'January'; // Replace this with your text representation of the month
+    
+  //   const da = daba.split('T')[0];
+  //   console.log(da);
+    try {
+      // Query your database based on year and month
+      // console.log( parseInt(year+`-`+monthNumber+`-01`));
+  
+      // console.log( new Date(year+`-`+monthNumber+`-01`));
+  
+      const data = await Spi.find({
+        
+      //   date:  new Date(year+`-`+monthNumber+`-01`), // Starting date of the year
+         date:date,
+      });
+      console.log(data);
+      res.json(data);
+    }   catch(err){
+      next(err);
+  }
+  
+      }
 
     module.exports.getSSIdata = async(req,res,next)=>{
    
@@ -290,3 +326,41 @@ module.exports.getSPIdata = async(req,res,next)=>{
   }
   
       }
+
+
+    //   module.exports.editSPI= async (req,res,next)=>{
+    
+    //     try{
+    //       const ide=req.body.id;
+    //       const updatedspi=await Spi.findByIdAndUpdate({ _id:ide}, data.index:req.body.index )
+    //             // const updatedEvent=await Event.findByIdAndUpdate(
+    //             //     req.params.id, 
+    //             //     { $set: req.body },
+    //             //     { new: true }
+    //             //   );
+    //             console.log(updatedspi);
+    //               res.status(200).json(updatedspi);       
+    //     }
+    //     catch(err){
+    //         next(err);
+    //     }
+    // };
+
+    
+    //   module.exports.deleteSPI= async (req,res,next)=>{
+    
+    //     try{
+    //       const ide=req.body.id;
+    //       const despi=await Spi.findByIdAndDelete({ _id:ide} )
+    //             // const updatedEvent=await Event.findByIdAndUpdate(
+    //             //     req.params.id, 
+    //             //     { $set: req.body },
+    //             //     { new: true }
+    //             //   );
+    //             console.log(despi);
+    //               res.status(200).json(despi);       
+    //     }
+    //     catch(err){
+    //         next(err);
+    //     }
+    // };

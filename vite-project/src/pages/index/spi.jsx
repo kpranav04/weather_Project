@@ -5,6 +5,8 @@ import axios from "axios";
 import MyMap from "../../components/map/map";
 import Navbar from "../../components/navbar/navbar";
 import './spi.css';
+import kba from './KBA.json'
+import Select from 'react-select';
 // import DatePicker from "react-datepicker";
 
 // import "react-datepicker/dist/react-datepicker.css";
@@ -18,6 +20,7 @@ function SPI() {
 
   });
   const [datee, setDate] = useState(new Date());
+  const [dateget, setgetDate] = useState(new Date());
 
   const [index,setIndex]=useState([]);
 
@@ -32,9 +35,15 @@ function SPI() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://localhost:3000/index/spi_post', { location: data.location, date: datee, index: data.spi_index, value: data.valuee });
+    const res = await axios.post('http://localhost:3000/index/spi_post', { location: selectedOption.value, date: datee, index: data.spi_index, value: data.valuee });
     console.log(res);
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const res = await axios.post('http://localhost:3000/index/spi_post', { location: data.location, date: datee, index: data.spi_index, value: data.valuee });
+  //   console.log(res);
+  // };
 
   const handlegetChange = (e) => {
     setCred((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -49,6 +58,38 @@ function SPI() {
     setMapData(response.data);
   };
 
+  const handlegetSubmitDaily = async (e) => {
+    e.preventDefault();
+   
+
+    const response = await axios.post('http://localhost:3000/index/spi_get_daily', { dateget});
+    console.log(response.data);
+    setMapData(response.data);
+  };
+ ///FILTER
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (inputValue) => {
+    setInputValue(inputValue);
+  };
+
+  const handleOptionChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    setInputValue('');
+  };
+
+  // Filter options based on input value
+  const filteredOptions = kba.filter((option) =>
+    option.KBA.toLowerCase().startsWith(inputValue.toLowerCase())
+  );
+
+  // Map options for react-select format
+  const options = filteredOptions.map((option) => ({
+    value: option.KBA,
+    label: option.KBA,
+  }));
+//FILTER ENDS
 
 
   return (
@@ -61,12 +102,35 @@ function SPI() {
       <div className="filters_spi">
       
         <h3>City</h3>
-        <input
+        {/* <input
           className='entry'
           type="text"
           required
           onChange={handleChange} placeholder='location' id='location'
-        />
+        /> */}
+        {/* <select
+            className="entry"
+            required
+            onChange={handlegetChange}
+            id="location"
+          >
+            <option value="">location</option>
+            {kba.map( (loc) => (
+              <option key={loc.id} value={loc.KBA}>
+                {loc.KBA}
+              </option>
+            ))}
+          </select> */}
+          <Select
+        value={selectedOption}
+        onChange={handleOptionChange}
+        onInputChange={handleInputChange}
+        options={options}
+        inputValue={inputValue}
+        isClearable
+        isSearchable
+        placeholder="Search location..."
+      />
         <h3>Spi index</h3>
         <input
           className='entry'
@@ -88,7 +152,7 @@ function SPI() {
 
    
 
-     <h3>Get Data Box</h3>
+     <h3>Get Data Box MONTHLY</h3>
       <h2>Year</h2>
           <select
             className="entry"
@@ -97,6 +161,7 @@ function SPI() {
             id="year"
           >
             <option value="">Select a year</option>
+           
             {Array.from({ length: 81 }, (_, i) => (
               <option key={i} value={i + 1950}>
                 {i + 1950}
@@ -126,6 +191,12 @@ function SPI() {
       </select>
 
       <button onClick={handlegetSubmit}>Getdata</button>
+
+
+      <h3>Get spi Data Box Daily</h3>
+
+<DatePicker selected={dateget} onChange={(dateget) => setgetDate(dateget)} />
+<button onClick={handlegetSubmitDaily}>Getdata</button>
       </div>
       
 

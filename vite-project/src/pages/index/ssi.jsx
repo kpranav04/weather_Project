@@ -5,6 +5,8 @@ import axios from "axios";
 import MyMap from "../../components/map/map";
 import Navbar from "../../components/navbar/navbar";
 import './ssi.css';
+import Select from 'react-select';
+import kba from './KBA.json'
 // import DatePicker from "react-datepicker";
 
 // import "react-datepicker/dist/react-datepicker.css";
@@ -33,7 +35,7 @@ function SSI() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://localhost:3000/index/ssi_post', { location: data.location, date: datee, index: data.ssi_index, value: data.valuee });
+    const res = await axios.post('http://localhost:3000/index/ssi_post', { location: selectedOption.value, date: datee, index: data.ssi_index, value: data.valuee });
     console.log(res);
   };
 
@@ -47,6 +49,32 @@ function SSI() {
     setMapData(response.data);
   };
 
+   ///FILTER
+ const [selectedOption, setSelectedOption] = useState(null);
+ const [inputValue, setInputValue] = useState('');
+
+ const handleInputChange = (inputValue) => {
+   setInputValue(inputValue);
+ };
+
+ const handleOptionChange = (selectedOption) => {
+   setSelectedOption(selectedOption);
+   setInputValue('');
+ };
+
+ // Filter options based on input value
+ const filteredOptions = kba.filter((option) =>
+   option.KBA.toLowerCase().startsWith(inputValue.toLowerCase())
+ );
+
+ // Map options for react-select format
+ const options = filteredOptions.map((option) => ({
+   value: option.KBA,
+   label: option.KBA,
+ }));
+//FILTER ENDS
+
+
 
 
   return (
@@ -59,12 +87,22 @@ function SSI() {
       <div className="filters_spi">
       
         <h3>City</h3>
-        <input
+        {/* <input
           className='entry'
           type="text"
           required
           onChange={handleChange} placeholder='location' id='location'
-        />
+        /> */}
+         <Select
+        value={selectedOption}
+        onChange={handleOptionChange}
+        onInputChange={handleInputChange}
+        options={options}
+        inputValue={inputValue}
+        isClearable
+        isSearchable
+        placeholder="Search location..."
+      />
         <h3>SSI index</h3>
         <input
           className='entry'

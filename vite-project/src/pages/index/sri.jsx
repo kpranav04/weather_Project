@@ -5,6 +5,10 @@ import axios from "axios";
 import MyMap from "../../components/map/map";
 import Navbar from "../../components/navbar/navbar";
 import './sri.css';
+import Select from 'react-select';
+import kba from './KBA.json'
+
+
 // import DatePicker from "react-datepicker";
 
 // import "react-datepicker/dist/react-datepicker.css";
@@ -33,9 +37,15 @@ function SRI() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://localhost:3000/index/sri_post', { location: data.location, date: datee, index: data.sri_index, value: data.valuee });
+    const res = await axios.post('http://localhost:3000/index/sri_post', { location: selectedOption.value, date: datee, index: data.sri_index, value: data.valuee });
     console.log(res);
   };
+
+  // const handlegetSubmitDaily = async (e) => {
+  //   e.preventDefault();
+  //   const res = await axios.post('http://localhost:3000/index/sri_post', { location: data.location, date: datee, index: data.sri_index, value: data.valuee });
+  //   console.log(res);
+  // };
 
  
   const handlegetSubmit = async (e) => {
@@ -46,6 +56,33 @@ function SRI() {
     console.log(response.data);
     setMapData(response.data);
   };
+
+  
+ ///FILTER
+ const [selectedOption, setSelectedOption] = useState(null);
+ const [inputValue, setInputValue] = useState('');
+
+ const handleInputChange = (inputValue) => {
+   setInputValue(inputValue);
+ };
+
+ const handleOptionChange = (selectedOption) => {
+   setSelectedOption(selectedOption);
+   setInputValue('');
+ };
+
+ // Filter options based on input value
+ const filteredOptions = kba.filter((option) =>
+   option.KBA.toLowerCase().startsWith(inputValue.toLowerCase())
+ );
+
+ // Map options for react-select format
+ const options = filteredOptions.map((option) => ({
+   value: option.KBA,
+   label: option.KBA,
+ }));
+//FILTER ENDS
+
 
 
 
@@ -59,12 +96,16 @@ function SRI() {
       <div className="filters_spi">
       
         <h3>City</h3>
-        <input
-          className='entry'
-          type="text"
-          required
-          onChange={handleChange} placeholder='location' id='location'
-        />
+        <Select
+        value={selectedOption}
+        onChange={handleOptionChange}
+        onInputChange={handleInputChange}
+        options={options}
+        inputValue={inputValue}
+        isClearable
+        isSearchable
+        placeholder="Search location..."
+      />
         <h3>SRI index</h3>
         <input
           className='entry'
@@ -86,10 +127,12 @@ function SRI() {
 
    
 
-     <h3>Get Data Box</h3>
+     <h3>Get Data Box MONTHLY</h3>
 
      <DatePicker selected={dateget} onChange={(dateget) => setgetDate(dateget)} />
      <button onClick={handlegetSubmit}>Getdata</button>
+
+  
       </div>
       
 

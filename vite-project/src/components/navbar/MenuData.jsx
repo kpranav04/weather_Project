@@ -18,10 +18,12 @@ export const MenuData= [
     //   icon:"fa-solid fa-briefcase"
     // },
     {
-      title: "Contact Us",
-      url:"#",
-      cName:"nav-links" ,
-      icon:"fa-solid fa-address-book"
+      
+      url: "/search",
+      title: "Search",
+      
+      cName: "nav-links",
+  
     },
     
   
@@ -49,6 +51,7 @@ export const MenuData= [
       cName: "nav-links",
   
     },
+ 
     {
       title: "Sign Up",
       url:"#",

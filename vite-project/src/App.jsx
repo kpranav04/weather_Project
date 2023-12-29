@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SPI from './pages/index/spi'
 import SSI from './pages/index/ssi'
 import SRI from './pages/index/sri'
+import Filters from './pages/filters/filters';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route exact path="/spi" element={<SPI/>} />
         <Route exact path="/ssi" element={<SSI/>} />
         <Route exact path="/sri" element={<SRI/>} />
-
+        <Route exact path="/search" element={<Filters/>} />
         </Routes>
       
     </Router>  

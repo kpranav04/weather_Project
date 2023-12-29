@@ -1,5 +1,5 @@
 const express=require("express");
-const {postSPI,getSPIdata, postSSI, getSSIdata, postSRI, getSRIdata, getSPIdataMONTH}= require("../controllers/index");
+const {postSPI,getSPIdata, postSSI, getSSIdata, postSRI, getSRIdata, getSPIdataMONTH, getDataByLocationDateIndex}= require("../controllers/index");
 
 const router=express.Router();
 
@@ -10,5 +10,6 @@ router.post("/ssi_post", postSSI);
 router.post("/ssi_get", getSSIdata);
 router.post("/sri_post", postSRI);
 router.post("/sri_get", getSRIdata);
+router.post("/filters", getDataByLocationDateIndex);
 
 module.exports=router;

@@ -332,7 +332,7 @@ module.exports.getDataByLocationDateIndex = async (req, res, next) => {
     const { location, date, Index } = req.body;
     console.log("___________")
     console.log(location, date, Index);
-    
+
     const date1 = date.split("T")[0];
     // console.log(date1);
 
@@ -352,4 +352,40 @@ module.exports.getDataByLocationDateIndex = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+
+module.exports.editData = async (req, res, next) => {
+
+  try {
+    const dataq={
+      index:parseInt(req.body.data.index),
+      value:req.body.data.value
+    }
+    const updatedData = await Spi.findByIdAndUpdate(
+      req.body.id,
+      { $set:{ 'data.index': dataq.index,
+      'data.value': dataq.value }, },
+      { new: true }
+    );
+    console.log("edited")
+    console.log(updatedData)
+    res.status(200).json(updatedData);
+  }
+  catch (err) {
+    next(err);
+  }
+};
+// DELETE User
+module.exports.deleteData = async (req, res, next) => {
+  const ide = req.body.id;
+
+  try {
+    await Spi.findByIdAndDelete(ide);
+    res.status(200).json("User has been deleted.");
+  }
+  catch (err) {
+    next(err);
+  }
+
 };

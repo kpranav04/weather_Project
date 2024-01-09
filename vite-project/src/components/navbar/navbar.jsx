@@ -9,7 +9,7 @@ class Navbar extends Component{
   }
   render(){
     return(
-      <div>
+      <div className="mainNAv">
       <nav className="NavbarItems">
         <h1 className="logo">
           IITI DC <i className="fab fa-react"></i>

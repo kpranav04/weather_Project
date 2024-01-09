@@ -1,9 +1,6 @@
-p{color: red;}
-
-.home_map{
-  background-color: beige;
+.App {
+  text-align: center;
 }
-
-body{
-  background: linear-gradient(to bottom,  #af99df,#9f8ce5);
+.bodyfic{
+  background-color: #01040c;
 }

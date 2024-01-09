@@ -1,3 +1,7 @@
+nav {
+  z-index: 1000; 
+}
+
 .NavbarItems{
   display:flex;
   justify-content: space-between;

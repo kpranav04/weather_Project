@@ -1,5 +1,5 @@
 const express=require("express");
-const {postSPI,getSPIdata, postSSI, getSSIdata, postSRI, getSRIdata, getSPIdataMONTH, getDataByLocationDateIndex, deleteData, editData}= require("../controllers/index");
+const {postSPI,getSPIdata, postSSI, getSSIdata, postSRI, getSRIdata, getSPIdataMONTH, getDataByLocationDateIndex, deleteData_spi, editData_spi, getDataByLocationDateIndex_spi, deleteData_ssi, editData_ssi, getDataByLocationDateIndex_ssi,deleteData_sri, editData_sri, getDataByLocationDateIndex_sri}= require("../controllers/index");
 
 const router=express.Router();
 
@@ -10,7 +10,13 @@ router.post("/ssi_post", postSSI);
 router.post("/ssi_get", getSSIdata);
 router.post("/sri_post", postSRI);
 router.post("/sri_get", getSRIdata);
-router.post("/filters", getDataByLocationDateIndex);
-router.put("/edit", editData );
-router.put("/delete", deleteData);
+router.post("/filters_spi", getDataByLocationDateIndex_spi);
+router.put("/edit_spi", editData_spi );
+router.put("/delete_spi", deleteData_spi);
+router.post("/filters_sri", getDataByLocationDateIndex_sri);
+router.put("/edit_sri", editData_sri );
+router.put("/delete_sri", deleteData_sri);
+router.post("/filters_ssi", getDataByLocationDateIndex_ssi);
+router.put("/edit_ssi", editData_ssi);
+router.put("/delete_ssi", deleteData_ssi);
 module.exports=router;

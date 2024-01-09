@@ -18,12 +18,19 @@ export const MenuData= [
     //   icon:"fa-solid fa-briefcase"
     // },
     {
-      
-      url: "/search",
-      title: "Search",
-      
+      url: "/search_spi",
+      title: "edit_spi",
       cName: "nav-links",
-  
+    },
+    {
+      url: "/search_sri",
+      title: "edit_sri",
+      cName: "nav-links",
+    },
+    {
+      url: "/search_ssi",
+      title: "edit_ssi",
+      cName: "nav-links",
     },
     
   

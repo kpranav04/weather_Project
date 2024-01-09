@@ -326,8 +326,8 @@ module.exports.getSRIdata = async (req, res, next) => {
 // };
 
 
-
-module.exports.getDataByLocationDateIndex = async (req, res, next) => {
+//SPI
+module.exports.getDataByLocationDateIndex_spi = async (req, res, next) => {
   try {
     const { location, date, Index } = req.body;
     console.log("___________")
@@ -355,7 +355,7 @@ module.exports.getDataByLocationDateIndex = async (req, res, next) => {
 };
 
 
-module.exports.editData = async (req, res, next) => {
+module.exports.editData_spi = async (req, res, next) => {
 
   try {
     const dataq={
@@ -377,11 +377,139 @@ module.exports.editData = async (req, res, next) => {
   }
 };
 // DELETE User
-module.exports.deleteData = async (req, res, next) => {
+module.exports.deleteData_spi = async (req, res, next) => {
   const ide = req.body.id;
 
   try {
     await Spi.findByIdAndDelete(ide);
+    res.status(200).json("User has been deleted.");
+  }
+  catch (err) {
+    next(err);
+  }
+
+};
+
+//SRI
+module.exports.getDataByLocationDateIndex_sri = async (req, res, next) => {
+  try {
+    const { location, date, Index } = req.body;
+    console.log("___________")
+    console.log(location, date, Index);
+
+    const date1 = date.split("T")[0];
+    // console.log(date1);
+
+    const filter = {};
+
+    if (date) filter['date'] = date1;
+    if (location || Index) {
+      if (location) filter["data.location"] = location;
+      if (Index) filter["data.index"] = Index;
+    }
+
+    console.log(filter);
+
+    const filteredData = await Sri.find(filter);
+    console.log(filteredData)
+    res.json(filteredData);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+module.exports.editData_sri = async (req, res, next) => {
+
+  try {
+    const dataq={
+      index:parseInt(req.body.data.index),
+      value:req.body.data.value
+    }
+    const updatedData = await Sri.findByIdAndUpdate(
+      req.body.id,
+      { $set:{ 'data.index': dataq.index,
+      'data.value': dataq.value }, },
+      { new: true }
+    );
+    console.log("edited")
+    console.log(updatedData)
+    res.status(200).json(updatedData);
+  }
+  catch (err) {
+    next(err);
+  }
+};
+// DELETE User
+module.exports.deleteData_sri = async (req, res, next) => {
+  const ide = req.body.id;
+
+  try {
+    await Sri.findByIdAndDelete(ide);
+    res.status(200).json("User has been deleted.");
+  }
+  catch (err) {
+    next(err);
+  }
+
+};
+
+//SSI
+module.exports.getDataByLocationDateIndex_ssi = async (req, res, next) => {
+  try {
+    const { location, date, Index } = req.body;
+    console.log("___________")
+    console.log(location, date, Index);
+
+    const date1 = date.split("T")[0];
+    // console.log(date1);
+
+    const filter = {};
+
+    if (date) filter['date'] = date1;
+    if (location || Index) {
+      if (location) filter["data.location"] = location;
+      if (Index) filter["data.index"] = Index;
+    }
+
+    console.log(filter);
+
+    const filteredData = await Ssi.find(filter);
+    console.log(filteredData)
+    res.json(filteredData);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+module.exports.editData_ssi = async (req, res, next) => {
+
+  try {
+    const dataq={
+      index:parseInt(req.body.data.index),
+      value:req.body.data.value
+    }
+    const updatedData = await Ssi.findByIdAndUpdate(
+      req.body.id,
+      { $set:{ 'data.index': dataq.index,
+      'data.value': dataq.value }, },
+      { new: true }
+    );
+    console.log("edited")
+    console.log(updatedData)
+    res.status(200).json(updatedData);
+  }
+  catch (err) {
+    next(err);
+  }
+};
+// DELETE User
+module.exports.deleteData_ssi = async (req, res, next) => {
+  const ide = req.body.id;
+
+  try {
+    await Ssi.findByIdAndDelete(ide);
     res.status(200).json("User has been deleted.");
   }
   catch (err) {

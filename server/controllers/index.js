@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
 const filePath = path.join(__dirname, "KBA.json");
+const graph_data = path.join(__dirname, "graph_data.json");
 
 function convertMonthToNumber(monthText) {
   const months = {
@@ -26,6 +27,8 @@ function convertMonthToNumber(monthText) {
 }
 
 const citiesData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+const graphdata_spi = JSON.parse(fs.readFileSync(graph_data, "utf-8"));
+
 
 module.exports.postSPI = async (req, res, next) => {
   try {
@@ -511,6 +514,25 @@ module.exports.deleteData_ssi = async (req, res, next) => {
   try {
     await Ssi.findByIdAndDelete(ide);
     res.status(200).json("User has been deleted.");
+  }
+  catch (err) {
+    next(err);
+  }
+
+};
+
+// GET GRAPH SPI
+module.exports.graph_spi = async (req, res, next) => {
+  const year = req.body.year;
+  const location = req.body.location;
+  console.log(req.body);
+
+
+  try {
+    const filteredObjects = graphdata_spi[year].find(obj => obj.place_name === location);
+    // await Ssi.findByIdAndDelete(ide);
+    console.log(filteredObjects);
+    // res.status(200).json("User has been deleted.");
   }
   catch (err) {
     next(err);

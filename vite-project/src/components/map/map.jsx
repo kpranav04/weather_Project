@@ -2,8 +2,10 @@ import "./mapcss.css";
 import "leaflet/dist/leaflet.css";
 import React, { Component, useState } from "react";
 import { MapContainer, TileLayer, Polygon, Circle, Marker, Popup, Tooltip } from "react-leaflet";
-import mapData from "./india_st.json";
+// import mapData from "./india_st.json";
 // import mapData from "./India_State_Boundary.json";
+
+import mapData from "./States.json";
 
 import dataPoints from "./KBA.json"
 

@@ -1,5 +1,5 @@
 const express=require("express");
-const {postSPI,getSPIdata, postSSI, getSSIdata, postSRI, getSRIdata, getSPIdataMONTH, getDataByLocationDateIndex, deleteData_spi, editData_spi, getDataByLocationDateIndex_spi, deleteData_ssi, editData_ssi, getDataByLocationDateIndex_ssi,deleteData_sri, editData_sri, getDataByLocationDateIndex_sri}= require("../controllers/index");
+const {postSPI,getSPIdata, postSSI, getSSIdata, postSRI, getSRIdata, getSPIdataMONTH, getDataByLocationDateIndex, deleteData_spi, editData_spi, getDataByLocationDateIndex_spi, deleteData_ssi, editData_ssi, getDataByLocationDateIndex_ssi,deleteData_sri, editData_sri, getDataByLocationDateIndex_sri, graph_spi}= require("../controllers/index");
 
 const router=express.Router();
 
@@ -19,4 +19,6 @@ router.put("/delete_sri", deleteData_sri);
 router.post("/filters_ssi", getDataByLocationDateIndex_ssi);
 router.put("/edit_ssi", editData_ssi);
 router.put("/delete_ssi", deleteData_ssi);
+router.post("/graph_spi", graph_spi);
+
 module.exports=router;

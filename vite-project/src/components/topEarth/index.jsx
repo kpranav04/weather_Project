@@ -72,8 +72,8 @@ const MadeBy = styled.h3`
 export function TopSection() {
   return (
     <TopSectionContainer>
-      <Logo>Drought Controll App</Logo>
-      <Slogan>Keep it cool for safe living</Slogan>
+      <Logo>Indian Drought Index</Logo>
+      <Slogan>IIT Indore </Slogan>
       <Paragraph>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis cum velit aperiam aspernatur magni. Libero vel maxime facere illum laboriosam sit sequi maiores.
       </Paragraph>

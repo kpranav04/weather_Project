@@ -64,5 +64,11 @@ export const MenuData= [
       url:"#",
       cName:"nav-links-mobile" ,
       
+    },
+    {
+      title: "graph",
+      url:"/graph_spi",
+      cName:"nav-links-mobile" ,
+      
     }
   ];

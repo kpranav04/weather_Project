@@ -8,6 +8,8 @@ import SRI from './pages/index/sri'
 import Filters_spi from './pages/filters/filters_spi';
 import Filters_sri from './pages/filters/filters_sri';
 import Filters_ssi from './pages/filters/filters_ssi';
+import Graph_spi from './pages/graph/spi_graph';
+
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route exact path="/search_sri" element={<Filters_sri/>} />
 
         <Route exact path="/search_ssi" element={<Filters_ssi/>} />
+        <Route exact path="/graph_spi" element={<Graph_spi/>} />
+
 
         </Routes>
       

@@ -11,7 +11,6 @@ import Filters_ssi from './pages/filters/filters_ssi';
 import Graph_spi from './pages/graph/spi_graph';
 
 
-
 function App() {
   return (
     <Router>
@@ -25,8 +24,6 @@ function App() {
 
         <Route exact path="/search_ssi" element={<Filters_ssi/>} />
         <Route exact path="/graph_spi" element={<Graph_spi/>} />
-
-
         </Routes>
       
     </Router>  

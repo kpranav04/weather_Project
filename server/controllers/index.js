@@ -532,7 +532,7 @@ module.exports.graph_spi = async (req, res, next) => {
     const filteredObjects = graphdata_spi[year].find(obj => obj.place_name === location);
     // await Ssi.findByIdAndDelete(ide);
     console.log(filteredObjects);
-    // res.status(200).json("User has been deleted.");
+    res.status(200).json(filteredObjects);
   }
   catch (err) {
     next(err);

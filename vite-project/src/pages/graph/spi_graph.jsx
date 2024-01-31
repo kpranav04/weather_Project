@@ -114,6 +114,10 @@ function Graph_spi() {
               ticktext: [d1, d2, d3, d4],
               tickvals: [1, 2, 3, 4],
             },
+            yaxis: {
+              title: "Y-Axis Label",
+              dtick: 10,
+            },
           }}
         />
          </div>

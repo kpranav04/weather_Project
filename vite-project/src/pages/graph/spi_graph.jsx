@@ -103,7 +103,9 @@ function Graph_spi() {
         <div className="graphPlot">
         <Plot
           data={[
-           { type: "bar", x: [1, 2, 3,4], y: [D1,D2,D3,D4] },
+           { fill: 'tonexty',
+           type: 'scatter', x: [1, 2, 3,4], y: [D1,D2,D3,D4] },{  fill: 'tozeroy',
+           type: 'scatter', x: [1, 2, 3,4], y: [D1,D2,D3,D4] },
           ]}
           layout={{
             width: 620,
@@ -114,9 +116,18 @@ function Graph_spi() {
               ticktext: [d1, d2, d3, d4],
               tickvals: [1, 2, 3, 4],
             },
+            margin: {
+              l: 50,
+              r: 50,
+              b: 100,
+              t: 100,
+              pad: 4
+            },
+            paper_bgcolor: '#7f7f7f',
+            plot_bgcolor: '#c7c7c7',
             yaxis: {
               title: "Y-Axis Label",
-              dtick: 10,
+              dtick: 100,
             },
           }}
         />

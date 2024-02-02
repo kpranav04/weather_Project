@@ -5,7 +5,9 @@ import { MapContainer, TileLayer, Polygon, Circle, Marker, Popup, Tooltip } from
 // import mapData from "./india_st.json";
 // import mapData from "./India_State_Boundary.json";
 
-import mapData from "./States.json";
+// import mapData from "./States.json";
+import mapData from "./india_ds.json";
+
 
 import dataPoints from "./KBA.json"
 
@@ -49,7 +51,13 @@ function MyMap({dataArray}) {
   return (
     <div>
 
-      <MapContainer zoom={4.5} center={[23.5120, 80.3290]}>
+      <MapContainer zoom={4.5} center={[23.5120, 80.3290]} 
+     doubleClickZoom={false}  // Disable zooming on double click
+     scrollWheelZoom={false}
+     zoomControl={false} // Disable zoom control
+     dragging={false} 
+        > 
+      
         {/* <TileLayer
         url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=1UvW0tGrts7pl8q8PmRX"
         attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'

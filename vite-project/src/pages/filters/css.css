@@ -1,0 +1,38 @@
+.app-container1{
+    font-family: 'Montserrat', sans-serif;
+    background-color: beige;
+    border-radius: 1rem;
+}
+.app-container2{
+    width: 63rem;
+}
+.inp{
+    width: 100px;
+}
+.inpa{
+    width: 5rem;
+}
+
+@media (max-width: 1000px){
+    .app-container2{
+        font-size: 1.5rem;
+    }
+    .inp{
+        width: 2rem;
+    }
+    .inpa{
+        width: 2rem;
+    }
+    #tabl{
+        left: 16rem;
+        position: relative;
+    }
+    #appcnt1{
+        position: relative;
+        left: 11rem;
+    }
+    .tdbtn{
+        display: flex;
+        flex-direction: column;
+    }
+}

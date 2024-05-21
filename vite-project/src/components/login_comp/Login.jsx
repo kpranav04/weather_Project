@@ -6,7 +6,8 @@ import { useContext, useState } from "react";
 import axios from 'axios';
 import {AuthContext} from "../../hooks/context/AuthContext";
 import Navbar from '../../components/navbar/navbar'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -51,13 +52,25 @@ const Create = () => {
       //   setIsLoading(false);
         // navigate.push('/');
       // }, 1000);
+      toast.success("Login Successfully");
+      setTimeout(() => {
+           window.location.reload(false);
+      }, 1000);
+ 
+
     }  else {
+    
        
         dispatch({
           type: "LOGIN_FAILURE",
           payload: { message: "You are not allowed!" },
           
         });
+        toast("Unauthorized user");
+        setTimeout(() => {
+             window.location.reload(false);
+        }, 1000);
+
       
       }
     } catch (err) {
@@ -66,7 +79,10 @@ const Create = () => {
     // });
     console.log(err);
       dispatch({ type: "LOGIN_FAILURE", payload: err.res.data });
-      setIsLoading(false);
+      toast("Unauthorized user");
+      setTimeout(() => {
+           window.location.reload(false);
+      }, 1000);
     
     }
   };
@@ -74,6 +90,7 @@ const Create = () => {
 
   return (
     <>
+    <ToastContainer position="top-center"/>
      
           <Navbar />
          {/* <div></div> */}

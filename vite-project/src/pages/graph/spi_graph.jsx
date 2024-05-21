@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import kba from "./KBA.json";
 import "./graph.css";
 import Plot from "react-plotly.js";
+import Footer from "../../components/footer/Footer";
 
 function Graph_spi() {
   const [cred, setCred] = useState({
@@ -64,54 +65,61 @@ function Graph_spi() {
 
   return (
     <>
-      <Navbar />
-      <div style={{backgroundColor:"white"}}>
-        <div className="app-container2" id="spi_graph" >
-          <h1>DATA</h1>
-          <label style={{ width: "19rem" }}>
-            Location:
-            {/* <input type="text" id="location" /> */}
-            <Select
-              value={selectedOption}
-              onChange={handleOptionChange}
-              onInputChange={handleInputChange}
-              options={options}
-              inputValue={inputValue}
-              isClearable
-              isSearchable
-              placeholder="Search location..."
-              id="location"
-            />
-          </label>
-          <label style={{ width: "19rem" }}>
-            Year:
-            <br />
-            <select
-              className="entry"
-              required
-              onChange={handlegetChange}
-              id="year"
-            >
-              <option value="">Select a year</option>
-
-              {Array.from({ length: 81 }, (_, i) => (
-                <option key={i} value={i + 1950}>
-                  {i + 1950}
-                </option>
-              ))}
-            </select>
-            <button onClick={handlegetdata}>GetGraph</button>
-          </label>
+    <Navbar />
+    <div style={{borderRadius:"2rem"}} className="bg-gray-100 conti xyz min-h-screen flex flex-col items-center justify-center">
+      <div style={{borderRadius:"2rem",marginBottom:"1rem"}} className="bg-white p-4 md:p-8 rounded-lg shadow-md w-full md:w-3/4 lg:w-1/2 xl:w-1/3">
+        <h2 className="text-3xl font-bold mb-4">SPI Frequency v/s Category Graph</h2>
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="w-full mb-2 md:w-1/2">
+            <label className="flex flex-col">
+              <span className="mb-2">Select Location :</span>
+              <Select
+                value={selectedOption}
+                onChange={handleOptionChange}
+                onInputChange={handleInputChange}
+                options={options}
+                inputValue={inputValue}
+                isClearable
+                isSearchable
+                placeholder="Search location..."
+                id="location"
+                className="p-2 rounded border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              />
+            </label>
+          </div>
+          <div className="w-full mb-2 md:w-1/2">
+            <label className="flex flex-col">
+              <span className="mb-2">Select Year :</span>
+              <select
+                className="p-2 rounded border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                required
+                onChange={handlegetChange}
+                id="year"
+              >
+                <option value="">Select a year</option>
+                {Array.from({ length: 81 }, (_, i) => (
+                  <option key={i} value={i + 1950}>
+                    {i + 1950}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
         </div>
-        <div className="graphPlot">
-          <Plot style={{marginTop:"4rem", height:"35rem", width:"45rem"}} id="graphplot"
+        <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600 transition-colors w-full" onClick={handlegetdata}>Get Graph</button>
+      </div>
+      <div style={{borderRadius:"2rem"}} className="bg-white mt-8 p-4 md:p-8 rounded-lg shadow-md w-full md:w-3/4 lg:w-1/2 xl:w-1/3">
+        <h3 className="text-2xl font-bold mb-4">Frequency v/s Category Graph</h3>
+        <div className="w-full">
+          <Plot
+            id="graphplot"
             data={[
-              {
-                fill: "tonexty",
-                type: "scatter",
-                x: [1, 2, 3, 4],
-                y: [D1, D2, D3, D4],
-              },
+              // {
+              //   fill: "tonexty",
+              //   type: "scatter",
+              //   x: [1, 2, 3, 4],
+              //   y: [D1, D2, D3, D4],
+              // },
               {
                 fill: "tozeroy",
                 type: "scatter",
@@ -120,11 +128,11 @@ function Graph_spi() {
               },
             ]}
             layout={{
-              width: 720,
-              height: 520,
+              width: '100%',
+              height: '100%',
               title: "",
               xaxis: {
-                title: "X-Axis Label",
+                title: "Category",
                 ticktext: [d1, d2, d3, d4],
                 tickvals: [1, 2, 3, 4],
               },
@@ -133,19 +141,32 @@ function Graph_spi() {
                 r: 50,
                 b: 100,
                 t: 100,
-                pad: 4,
+                pad: 10,
               },
-              paper_bgcolor: "#7f7f7f",
-              plot_bgcolor: "#c7c7c7",
+              paper_bgcolor: "#f8f9fa",
+              plot_bgcolor: "#ffffff",
               yaxis: {
-                title: "Y-Axis Label",
-                dtick: 100,
+                title: "Frequency",
+                dtick: 30,
+                tickfont: {
+                  size: 10,  // Adjust the font size as needed
+              },
               },
             }}
           />
         </div>
+        <h5>D1 : Frequency of Days when SPI is -0.99 - 1.0 (Near Normal)</h5>
+        <h5>D2 : Frequency of Days when SPI is 1.0 - 1.5 (Moderately Wet)</h5>
+        <h5>D3 : Frequency of Days when SPI is 1.5 - 2.0 (Very Wet)</h5>
+        <h5>D4 : Frequency of Days when SPI is Greater than 2.0 (Extremely Wet)</h5>
+
       </div>
-    </>
+    </div>
+    {/* <Footer/> */}
+  </>
+  
+
+  
   );
 }
 

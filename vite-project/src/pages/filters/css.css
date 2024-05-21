@@ -1,38 +1,72 @@
-.app-container1{
-    font-family: 'Montserrat', sans-serif;
-    background-color: beige;
-    border-radius: 1rem;
-}
-.app-container2{
-    width: 63rem;
-}
-.inp{
-    width: 100px;
-}
-.inpa{
-    width: 5rem;
-}
 
-@media (max-width: 1000px){
-    .app-container2{
-        font-size: 1.5rem;
+.app-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Filter container styles */
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Label styles */
+  label {
+    display: block;
+  }
+  
+  /* Input styles */
+  .inp {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Button styles */
+  button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+   border: 1px solid black;
+   /* background-color: white; */
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #000000;
+  }
+  
+  /* Actions column styles */
+  th:last-child, td:last-child {
+    text-align: center;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 600px) {
+    .filter-container {
+      flex-direction: column;
     }
-    .inp{
-        width: 2rem;
+  
+    .inp, button {
+      width: auto;
     }
-    .inpa{
-        width: 2rem;
+  
+    table {
+      overflow-x: auto;
     }
-    #tabl{
-        left: 16rem;
-        position: relative;
-    }
-    #appcnt1{
-        position: relative;
-        left: 11rem;
-    }
-    .tdbtn{
-        display: flex;
-        flex-direction: column;
-    }
-}
+  }
+  

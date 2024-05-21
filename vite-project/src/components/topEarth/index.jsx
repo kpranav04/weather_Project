@@ -72,10 +72,11 @@ const MadeBy = styled.h3`
 export function TopSection() {
   return (
     <TopSectionContainer>
-      <Logo>Indian Drought Index</Logo>
-      <Slogan>IIT Indore </Slogan>
-      <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis cum velit aperiam aspernatur magni. Libero vel maxime facere illum laboriosam sit sequi maiores.
+      <Logo>Indian Key </Logo>
+      <Logo>Biodiversity Areas</Logo>
+      <Slogan>    Monitoring Drought and Precipitation Extremes</Slogan>
+      <Paragraph style={{fontSize:"1.3rem",marginTop:"1.5rem"}}>
+      Indian Institute of Technology (IIT) Indore
       </Paragraph>
     </TopSectionContainer>
   );

@@ -1,5 +1,6 @@
-import "./mapcss.css";
 import "leaflet/dist/leaflet.css";
+import "./mapcss.css";
+
 import React, { Component, useState } from "react";
 import { MapContainer, TileLayer, Polygon, Circle, Marker, Popup, Tooltip } from "react-leaflet";
 // import mapData from "./india_st.json";
@@ -43,13 +44,13 @@ function MyMap({dataArray}) {
     if (index >= -1.6 && index < -1.3) return 'red';
     if (index >= -1.3 && index < -0.8) return 'orange';
     if (index >= -0.8 && index < -0.5) return 'yellow';
-    if (index >= -0.5 && index < 0.5) return 'gray';
+    if (index >= -0.5 && index < 0.5) return 'rgb(146 146 146 / 77%)';
     if (index >= 0.5 && index < 0.8) return 'rgb(185, 249, 110)';
     if (index >= 0.8 && index < 1.3) return 'rgb(179, 209, 110)';
     if (index >= 1.3 && index < 1.6) return 'rgb(60, 188, 61)';
     if (index >= 1.6 && index < 2.0) return 'rgb(0, 158, 30)';
-    if (index >= 2.0 && index < 3.0) return 'green';
-    if (index >= 3.0) return 'blue';
+    if (index >= 2.0 && index < 3.0) return 'rgb(99, 112, 248)';
+    if (index >= 3.0) return 'rgb(99, 112, 248)';
     // return 'red';
   };
      
@@ -103,11 +104,12 @@ function MyMap({dataArray}) {
 
               }}
 
-              radius={35000}
+              radius={30000}
             // eventHandlers={{
             //   mouseover: () => handleCircleMouseOver(point, point.KBA),
             //   mouseout: handleCircleMouseOut,
             // }}
+            
             />
 
           ))
